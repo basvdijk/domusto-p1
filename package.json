@@ -1,0 +1,26 @@
+{
+  "name": "domusto-marantz",
+  "version": "1.0.0",
+  "description": "Marantz receiver plugin for DOMUSTO home automation",
+  "main": "index.js",
+  "dependencies": {
+    "marantz-avr": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basvdijk/domusto-marantz.git"
+  },
+  "keywords": [
+    "domusto"
+  ],
+  "author": "Bas van Dijk",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/basvdijk/domusto-marantz/issues"
+  },
+  "homepage": "https://github.com/basvdijk/domusto-marantz#readme"
+}
