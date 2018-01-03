@@ -1,10 +1,10 @@
 {
-  "name": "domusto-marantz",
+  "name": "domusto-p1",
   "version": "1.0.0",
-  "description": "Marantz receiver plugin for DOMUSTO home automation",
+  "description": "Landys Gyr E350 P1 plugin for DOMUSTO home automation",
   "main": "index.js",
   "dependencies": {
-    "marantz-avr": "^1.1.0"
+    "p1-reader": "^1.4.1"
   },
   "devDependencies": {},
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/basvdijk/domusto-marantz.git"
+    "url": "git+https://github.com/basvdijk/domusto-p1.git"
   },
   "keywords": [
     "domusto"
@@ -20,7 +20,7 @@
   "author": "Bas van Dijk",
   "license": "UNLICENSED",
   "bugs": {
-    "url": "https://github.com/basvdijk/domusto-marantz/issues"
+    "url": "https://github.com/basvdijk/domusto-p1/issues"
   },
-  "homepage": "https://github.com/basvdijk/domusto-marantz#readme"
+  "homepage": "https://github.com/basvdijk/domusto-p1#readme"
 }
