@@ -9,6 +9,7 @@ import { Domusto } from '../../domusto/DomustoInterfaces';
 
 // PLUGIN SPECIFIC
 import * as P1Reader from 'p1-reader';
+import DomustoSignalHub from '../../domusto/DomustoSignalHub';
 
 /**
  * P1 plugin for DOMUSTO
@@ -42,11 +43,15 @@ class DomustoP1 extends DomustoPlugin {
             });
             this.hardwareInstance = p1Reader;
             this.hardwareInstance.on('reading', this._updatePowerData.bind(this));
+
+            // this.hardwareInstance.on('reading', this._updatePowerData.bind(this));
         } catch (error) {
             util.log('Initialisation of P1 plugin failed', error);
         }
 
     }
+
+    onSignalReceivedForPlugin(signal: Domusto.Signal) {}
 
     /**
      *
@@ -61,42 +66,37 @@ class DomustoP1 extends DomustoPlugin {
 
         // util.prettyJson(data);
 
-        this.onNewInputData({
-            pluginId: this._pluginConfiguration.type,
-            data: {
-                electricity: {
-                    received: {
-                        tariff1: {
-                            value: data.electricity.received.tariff1.reading,    // Amount of electricity received for tariff1 (LOW)
-                            unit: data.electricity.received.tariff1.unit         // Unit of the electricity reading e.g. kWh
-                        },
-                        tariff2: {
-                            value: data.electricity.received.tariff2.reading,    // Amount of electricity received for tariff2 (NORMAL / HIGH)
-                            unit: data.electricity.received.tariff2.unit         // Unit of the electricity reading e.g. kWh
-                        },
-                        actual: {
-                            value: data.electricity.received.actual.reading,     // Amount of electricity currently consumed
-                            unit: data.electricity.received.actual.unit          // Unit of the electricity reading e.g. kWh
-                        }
-                    },
-                    delivered: {
-                        tariff1: {
-                            value: data.electricity.delivered.tariff1.reading,    // Amount of electricity delivered for tariff1 (LOW)
-                            unit: data.electricity.delivered.tariff1.unit         // Unit of the electricity reading e.g. kWh
-                        },
-                        tariff2: {
-                            value: data.electricity.delivered.tariff2.reading,    // Amount of electricity delivered for tariff2 (NORMAL / HIGH)
-                            unit: data.electricity.delivered.tariff2.unit         // Unit of the electricity reading e.g. kWh
-                        },
-                        actual: {
-                            value: data.electricity.delivered.actual.reading,     // Amount of electricity currently consumed
-                            unit: data.electricity.delivered.actual.unit          // Unit of the electricity reading e.g. kWh
-                        }
-                    }
-                }
+        this.broadcastSignal('received', {
+            tariff1: {
+                value: data.electricity.received.tariff1.reading,    // Amount of electricity received for tariff1 (LOW)
+                unit: data.electricity.received.tariff1.unit         // Unit of the electricity reading e.g. kWh
+            },
+            tariff2: {
+                value: data.electricity.received.tariff2.reading,    // Amount of electricity received for tariff2 (NORMAL / HIGH)
+                unit: data.electricity.received.tariff2.unit         // Unit of the electricity reading e.g. kWh
+            },
+            actual: {
+                value: data.electricity.received.actual.reading,     // Amount of electricity currently consumed
+                unit: data.electricity.received.actual.unit          // Unit of the electricity reading e.g. kWh
             }
         });
 
+
+        this.broadcastSignal('delivered', {
+            tariff1: {
+                value: data.electricity.delivered.tariff1.reading,    // Amount of electricity delivered for tariff1 (LOW)
+                unit: data.electricity.delivered.tariff1.unit         // Unit of the electricity reading e.g. kWh
+            },
+            tariff2: {
+                value: data.electricity.delivered.tariff2.reading,    // Amount of electricity delivered for tariff2 (NORMAL / HIGH)
+                unit: data.electricity.delivered.tariff2.unit         // Unit of the electricity reading e.g. kWh
+            },
+            actual: {
+                value: data.electricity.delivered.actual.reading,     // Amount of electricity currently consumed
+                unit: data.electricity.delivered.actual.unit          // Unit of the electricity reading e.g. kWh
+            }
+
+        });
 
     }
 
