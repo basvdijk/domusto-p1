@@ -36,7 +36,7 @@ $ ./domusto.js plugin install basvdijk/domusto-p1
 },
 ```
 
-## Device configuration
+## Example devices
 
 ```js
 
@@ -50,7 +50,7 @@ $ ./domusto.js plugin install basvdijk/domusto-p1
     protocol: {
         pluginId: 'P1',
         id: 'POWER1',
-        type: 'received'
+        deviceId: 'received'
     }
 },
 
@@ -64,7 +64,7 @@ $ ./domusto.js plugin install basvdijk/domusto-p1
     protocol: {
         pluginId: 'P1',
         id: 'POWER2',
-        type: 'delivered'
+        deviceId: 'delivered'
     }
 },
 ```
