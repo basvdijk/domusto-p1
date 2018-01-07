@@ -1,4 +1,3 @@
-import util from '../../util';
 import config from '../../config';
 
 // DOMUSTO
@@ -46,7 +45,7 @@ class DomustoP1 extends DomustoPlugin {
 
             // this.hardwareInstance.on('reading', this._updatePowerData.bind(this));
         } catch (error) {
-            util.log('Initialisation of P1 plugin failed', error);
+            this.console.log('Initialisation of P1 plugin failed', error);
         }
 
     }
