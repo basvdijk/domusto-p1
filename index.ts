@@ -2,7 +2,6 @@ import config from '../../config';
 
 // DOMUSTO
 import DomustoPlugin from '../../domusto/DomustoPlugin';
-import DomustoSignalHub from '../../domusto/DomustoSignalHub';
 
 // INTERFACES
 import { Domusto } from '../../domusto/DomustoInterfaces';
