@@ -2,13 +2,13 @@ import config from '../../config';
 
 // DOMUSTO
 import DomustoPlugin from '../../domusto/DomustoPlugin';
+import DomustoSignalHub from '../../domusto/DomustoSignalHub';
 
 // INTERFACES
 import { Domusto } from '../../domusto/DomustoInterfaces';
 
 // PLUGIN SPECIFIC
 import * as P1Reader from 'p1-reader';
-import DomustoSignalHub from '../../domusto/DomustoSignalHub';
 
 /**
  * P1 plugin for DOMUSTO
