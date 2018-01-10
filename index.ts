@@ -1,6 +1,5 @@
-import config from '../../config';
-
 // DOMUSTO
+import config from '../../config';
 import DomustoPlugin from '../../domusto/DomustoPlugin';
 
 // INTERFACES
@@ -40,16 +39,12 @@ class DomustoP1 extends DomustoPlugin {
                 emulator: pluginConfiguration.dummyData,
             });
             this.hardwareInstance = p1Reader;
-            this.hardwareInstance.on('reading', this._updatePowerData.bind(this));
-
-            // this.hardwareInstance.on('reading', this._updatePowerData.bind(this));
+            this.hardwareInstance.on('reading', this.updatePowerData.bind(this));
         } catch (error) {
             this.console.log('Initialisation of P1 plugin failed', error);
         }
 
     }
-
-    onSignalReceivedForPlugin(signal: Domusto.Signal) {}
 
     /**
      *
@@ -60,9 +55,9 @@ class DomustoP1 extends DomustoPlugin {
      * @param {any} data Data broadcasted by the device
      * @memberof DomustoP1
      */
-    _updatePowerData(data) {
+    updatePowerData(data) {
 
-        // util.prettyJson(data);
+        // this.console.prettyJson(data);
 
         this.broadcastSignal('received', {
             tariff1: {
@@ -78,7 +73,6 @@ class DomustoP1 extends DomustoPlugin {
                 unit: data.electricity.received.actual.unit          // Unit of the electricity reading e.g. kWh
             }
         });
-
 
         this.broadcastSignal('delivered', {
             tariff1: {
@@ -98,9 +92,6 @@ class DomustoP1 extends DomustoPlugin {
 
     }
 
-    toString() {
-        return super.toString();
-    }
 }
 
 export default DomustoP1;
