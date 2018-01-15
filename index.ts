@@ -33,15 +33,29 @@ class DomustoP1 extends DomustoPlugin {
             website: 'http://domusto.com'
         });
 
-        try {
-            let p1Reader = new P1Reader({
-                serialPort: pluginConfiguration.settings.port,
-                emulator: pluginConfiguration.dummyData,
-            });
-            this.hardwareInstance = p1Reader;
-            this.hardwareInstance.on('reading', this.updatePowerData.bind(this));
-        } catch (error) {
-            this.console.log('Initialisation of P1 plugin failed', error);
+        this.pluginConfiguration = pluginConfiguration;
+
+        const isConfigurationValid = this.validateConfigurationAttributes(pluginConfiguration.settings, [
+            {
+                attribute: 'port',
+                type: 'string'
+            }
+        ]);
+
+        if (isConfigurationValid) {
+
+            try {
+                let p1Reader = new P1Reader({
+                    serialPort: pluginConfiguration.settings.port,
+                    emulator: pluginConfiguration.dummyData,
+                });
+                this.hardwareInstance = p1Reader;
+                this.hardwareInstance.on('reading', this.updatePowerData.bind(this));
+                this.console.header(`${pluginConfiguration.id} plugin ready for sending / receiving data`);
+            } catch (error) {
+                this.console.log('Initialisation of P1 plugin failed', error);
+            }
+
         }
 
     }
