@@ -3,7 +3,7 @@ import config from '../../config';
 import DomustoPlugin from '../../domusto/DomustoPlugin';
 
 // INTERFACES
-import { Domusto } from '../../domusto/DomustoInterfaces';
+import { Domusto } from '../../domusto/DomustoTypes';
 
 // PLUGIN SPECIFIC
 import * as P1Reader from 'p1-reader';
