@@ -68,3 +68,19 @@ $ ./domusto.js plugin install basvdijk/domusto-p1
     }
 },
 ```
+
+# API
+
+## /update - GET
+Updates the P1 values
+
+### Parameters
+ - Consumption low tariff
+ - Consumption high tariff
+ - Consumption current
+ - Return low tariff
+ - Return high tariff
+ - Return current
+
+Example:
+`http://192.168.178.72:3000/plugin/domusto-p1/update?data=6435;8084;529;5650;3453;345`

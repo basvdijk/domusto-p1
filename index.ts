@@ -4,6 +4,7 @@ import DomustoPlugin from '../../domusto/DomustoPlugin';
 
 // INTERFACES
 import { Domusto } from '../../domusto/DomustoTypes';
+import DomustoP1Api from './api';
 
 // PLUGIN SPECIFIC
 import * as P1Reader from 'p1-reader';
@@ -39,22 +40,32 @@ class DomustoP1 extends DomustoPlugin {
             {
                 attribute: 'port',
                 type: 'string'
+            },
+            {
+                attribute: 'wireless',
+                type: 'boolean'
             }
         ]);
 
         if (isConfigurationValid) {
 
-            try {
-                let p1Reader = new P1Reader({
-                    serialPort: pluginConfiguration.settings.port,
-                    emulator: pluginConfiguration.dummyData,
-                });
-                this.hardwareInstance = p1Reader;
-                this.hardwareInstance.on('reading', this.updatePowerData.bind(this));
-                this.console.header(`${pluginConfiguration.id} plugin ready for sending / receiving data`);
-            } catch (error) {
-                this.console.log('Initialisation of P1 plugin failed', error);
+            if (!pluginConfiguration.settings.wireless) {
+
+                try {
+                    let p1Reader = new P1Reader({
+                        serialPort: pluginConfiguration.settings.port,
+                        emulator: pluginConfiguration.dummyData,
+                    });
+                    this.hardwareInstance = p1Reader;
+                    this.hardwareInstance.on('reading', this.updatePowerData.bind(this));
+                    this.console.header(`${pluginConfiguration.id} plugin ready for sending / receiving data`);
+                } catch (error) {
+                    this.console.log('Initialisation of P1 plugin failed', error);
+                }
+
             }
+
+            DomustoP1Api.setPluginInstance(this);
 
         }
 
